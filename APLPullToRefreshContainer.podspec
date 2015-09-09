@@ -1,19 +1,18 @@
 Pod::Spec.new do |s|
   s.name         = "APLPullToRefreshContainer"
   s.version      = "0.0.1"
-  s.summary      = "Pull"
+  s.summary      = "Pull To Refresh Control"
 
   s.description  = <<-DESC
-                   Pull to refresh control
                    DESC
 
   s.homepage     = "https://bitbucket.org/lb-lab/aplpulltorefreshcontainer"
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   
-  s.author       = 'Nico Schümann'
+  s.author       = 'Nico Schuemann'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '5.0'
 
   s.source       = { :git => "git@bitbucket.org:lb-lab/aplpulltorefreshcontainer.git", :tag => s.version.to_s }
 
