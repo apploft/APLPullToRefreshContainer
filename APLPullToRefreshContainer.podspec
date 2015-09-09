@@ -4,6 +4,7 @@ Pod::Spec.new do |s|
   s.summary      = "Pull To Refresh Control"
 
   s.description  = <<-DESC
+		This is a Pull to Refresh Control where a more verbose description will follow.
                    DESC
 
   s.homepage     = "https://bitbucket.org/lb-lab/aplpulltorefreshcontainer"
