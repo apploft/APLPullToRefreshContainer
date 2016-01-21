@@ -154,6 +154,10 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
     _currentPullToRefreshView = pullToRefreshView;
     _pullToRefreshViewHeight = pullToRefreshView.bounds.size.height;
     
+    if ([_delegate respondsToSelector:@selector(aplPullToRefreshDidInstallPullToRefreshView:)]) {
+        [_delegate aplPullToRefreshDidInstallPullToRefreshView:pullToRefreshView];
+    }
+    
     [view layoutIfNeeded];
     pullToRefreshView.alpha = 0;
     constraint.constant = 0;

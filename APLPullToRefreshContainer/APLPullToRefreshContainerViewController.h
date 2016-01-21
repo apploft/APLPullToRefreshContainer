@@ -27,6 +27,7 @@ typedef void(^APLPullToRefreshCompletionHandler)(void);
 
 @optional
 - (UIColor *)aplPullToRefreshContainerViewBackgroundColor;
+- (void)aplPullToRefreshDidInstallPullToRefreshView:(id<APLPullToRefreshView>)pullToRefreshView;
 
 @end
 
