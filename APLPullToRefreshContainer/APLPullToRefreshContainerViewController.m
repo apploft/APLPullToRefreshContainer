@@ -133,13 +133,16 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
 }
 
 - (void)addPullToRefreshView {
-    UIView *view = self.view;
+    UIView<APLPullToRefreshView> *pullToRefreshView = [_delegate aplPullToRefreshPullToRefreshView];
+    if (!pullToRefreshView) {
+        return;
+    }
 
+    UIView *view = self.view;
     if ([_delegate respondsToSelector:@selector(aplPullToRefreshContainerViewBackgroundColor)]) {
         view.backgroundColor = [_delegate aplPullToRefreshContainerViewBackgroundColor];
     }
     
-    UIView<APLPullToRefreshView> *pullToRefreshView = [_delegate aplPullToRefreshPullToRefreshView];
     pullToRefreshView.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:pullToRefreshView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide attribute:NSLayoutAttributeTop multiplier:1. constant:0];
