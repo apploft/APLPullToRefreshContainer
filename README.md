@@ -33,15 +33,11 @@ Use _APLPullToRefreshContainerViewController_'s _embedContentViewController:_ me
 You have to own the UIViewController instance you pass because the container takes a weak reference.
 
 ### Your Content View Controller
-
-Import header file:
-
-	#import "APLPullToRefreshViewController.h"
 	
-Your content view controller embeded via the segue named _aplContent_ or added via the _embedContentViewController:_  has to provide a _scrollView_ property that is observed by the container. To work out-of-the-box with _UITableView_ etc., it will work, too, if you view controller's view *is* a _UIScrollView_. If it is not, please provide the _scrollView_ property.
+Your content view controller embeded via the segue named _aplContent_ or added via the _embedContentViewController:_  has to provide a _scrollView_ property that is observed by the container. To work out-of-the-box with _UITableView_ etc., it will work, too, if you view controller's view __is__ a _UIScrollView_. If it is not, please provide the _scrollView_ property.
 
 
-* If you do not like the default Pull to Refresh view (which is just a transparent view with a UIActivityIndicatorView), you can either implement _aplPullToRefreshContainer:didInstallPullToRefreshView:_ in your container to customize the default appearence.
+* If you do not like the default Pull to Refresh view (which is just a transparent view with a UIActivityIndicatorView), you can either implement _aplPullToRefreshContainer:didInstallPullToRefreshView:_ in your delegate to customize the default appearence.
 
 For more sophisticated layouts, please provide a custom view via _-aplPullToRefreshPullToRefreshViewForContainer:_. It may optionally conform to the _APLPullToRefreshView_ protocol. __Make sure to set a height constraint for the view you provide (or make it have an intrinsic height) or it will have no height.__
 
@@ -50,7 +46,7 @@ For more sophisticated layouts, please provide a custom view via _-aplPullToRefr
 
 ### Your Pull to Refresh View
 
-You can provide any view that has a height constraint (or an intrinsic height). It will be added at full width and the height its constraints suggest.
+You can provide any view that has a height constraint (or an intrinsic height). It will be added at full width.
 
 Conforming to the _APLPullToRefreshView_ might turn out to be useful, because:
 
@@ -89,6 +85,15 @@ It is guaranteed that there is at most one pull to refresh view and one pull to 
 Calling the completion handler multiple times is undefined behaviour that could lead to threat to life etc.
 
 
+# Frequently Asked Questions
+
 ## How can I temporarily disable Pull to Refresh?
 
 Use the container's _pullToRefreshEnabled_ property.
+
+
+# Changelog
+
+## Version 1.0
+- All delegate methods have been renamed and annotated so they work perfectly from Swift, too.
+- Returning nil from the delegate's _aplPullToRefreshPullToRefreshViewForContainer:_ method is now unsupported. Use the container's _pullToRefreshEnabled_ property, instead.
