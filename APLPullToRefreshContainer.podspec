@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "APLPullToRefreshContainer"
-  s.version      = "0.0.3"
+  s.version      = "1.0.0"
   s.summary      = "Pull To Refresh Control"
 
   s.description  = <<-DESC
-		This is a Pull to Refresh Control where a more verbose description will follow.
+		This is a Pull to Refresh Control where you can embed arbitrary scrollable UIViewControllers.
                    DESC
 
   s.homepage     = "https://bitbucket.org/lb-lab/aplpulltorefreshcontainer"
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   
   s.author       = 'Nico Schuemann'
 
-  s.platform     = :ios, '5.0'
+  s.platform     = :ios, '8.0'
 
   s.source       = { :git => "git@bitbucket.org:lb-lab/aplpulltorefreshcontainer.git", :tag => s.version.to_s }
 

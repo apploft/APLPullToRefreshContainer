@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class APLPullToRefreshContainerViewController;
 typedef void(^APLPullToRefreshCompletionHandler)(void);
 
 @protocol APLPullToRefreshView <NSObject>
@@ -15,25 +16,30 @@ typedef void(^APLPullToRefreshCompletionHandler)(void);
 @optional
 - (void)aplPullToRefreshStartAnimating;
 - (void)aplPullToRefreshStopAnimating;
-- (void)aplPullToRefreshProgressUpdate:(CGFloat)progress beyondThreshold:(BOOL)beyondThreshold;
+- (void)aplPullToRefreshProgressUpdate:(CGFloat)progress beyondThreshold:(BOOL)beyondThreshold NS_SWIFT_NAME(aplPullToRefresh(progressUpdate:beyondThreshold:));
 
 @end
 
+
 @protocol APLPullToRefreshContainerDelegate <NSObject>
 
-- (UIScrollView *)aplPullToRefreshContentScrollView;
-- (UIView<APLPullToRefreshView> *)aplPullToRefreshPullToRefreshView;
-- (void)aplDidTriggerPullToRefreshCompletion:(APLPullToRefreshCompletionHandler)completionHandler;
+- (void)aplPullToRefreshContainer:(nonnull APLPullToRefreshContainerViewController *)container didTriggerPullToRefreshCompletion:(nonnull APLPullToRefreshCompletionHandler)completionHandler NS_SWIFT_NAME(aplPullToRefreshContainer(_:didTriggerPullToRefreshCompletion:));
 
 @optional
-- (UIColor *)aplPullToRefreshContainerViewBackgroundColor;
-- (void)aplPullToRefreshDidInstallPullToRefreshView:(id<APLPullToRefreshView>)pullToRefreshView;
+- (nullable UIColor *)aplPullToRefreshViewBackgroundColorForContainer:(nonnull APLPullToRefreshContainerViewController *)container NS_SWIFT_NAME(aplPullToRefreshViewBackgroundColorForContainer(_:));
+- (nonnull UIView<APLPullToRefreshView> *)aplPullToRefreshPullToRefreshViewForContainer:(nonnull APLPullToRefreshContainerViewController *)container NS_SWIFT_NAME(aplPullToRefreshPullToRefreshViewForContainer(_:));
+- (void)aplPullToRefreshContainer:(nonnull APLPullToRefreshContainerViewController *)container didInstallPullToRefreshView:(nonnull UIView<APLPullToRefreshView> *)pullToRefreshView NS_SWIFT_NAME(aplPullToRefreshContainer(_:didInstallPullToRefreshView:));
+- (void)aplPullToRefreshContainer:(nonnull APLPullToRefreshContainerViewController *)container didEmbedContentViewController:(nonnull UIViewController *)contentViewController NS_SWIFT_NAME(aplPullToRefreshContainer(_:didEmbedContentViewController:));
 
 @end
 
 
 @interface APLPullToRefreshContainerViewController : UIViewController
 
-@property (nonatomic, weak) UIViewController<APLPullToRefreshContainerDelegate> *delegate;
+@property (nullable, nonatomic, weak) id<APLPullToRefreshContainerDelegate> delegate;
+@property (nullable, nonatomic, weak, readonly) UIViewController *contentViewController;
+@property (nonatomic, getter=isPullToRefreshEnabled) BOOL pullToRefreshEnabled;
+
+- (void)embedContentViewController:(nonnull UIViewController *)contentViewController;
 
 @end
