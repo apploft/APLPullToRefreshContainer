@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 		This is a Pull to Refresh Control where you can embed arbitrary scrollable UIViewControllers.
                    DESC
 
-  s.homepage     = "https://bitbucket.org/lb-lab/aplpulltorefreshcontainer"
+  s.homepage     = "https://github.com/apploft/APLPullToRefreshContainer"
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '10.0'
 
-  s.source       = { :git => "git@bitbucket.org:lb-lab/aplpulltorefreshcontainer.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/apploft/APLPullToRefreshContainer.git", :tag => s.version.to_s }
 
   s.source_files  = 'APLPullToRefreshContainer', 'APLPullToRefreshContainer/**/*.{h,m}'
   s.exclude_files = 'APLPullToRefreshContainer/Exclude'
