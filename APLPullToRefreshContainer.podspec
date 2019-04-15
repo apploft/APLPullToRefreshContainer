@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   
   s.author       = 'Nico Schuemann'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '10.0'
 
   s.source       = { :git => "git@bitbucket.org:lb-lab/aplpulltorefreshcontainer.git", :tag => s.version.to_s }
 
