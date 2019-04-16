@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "APLPullToRefreshContainer"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Pull To Refresh Control"
 
   s.description  = <<-DESC

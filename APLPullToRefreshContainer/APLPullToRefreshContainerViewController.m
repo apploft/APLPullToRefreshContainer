@@ -264,6 +264,12 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
     return YES;
 }
 
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)panGestureRecognizer {
+    CGPoint velocity = [panGestureRecognizer velocityInView:self.view];
+    return fabs(velocity.y) > fabs(velocity.x);
+}
+
+
 #pragma mark - Helpers, Setters, Getters
 
 - (UIScrollView *)scrollViewInContentViewController {
