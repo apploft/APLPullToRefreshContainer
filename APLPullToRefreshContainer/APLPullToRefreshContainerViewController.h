@@ -39,6 +39,7 @@ typedef void(^APLPullToRefreshCompletionHandler)(void);
 @property (nullable, nonatomic, weak) id<APLPullToRefreshContainerDelegate> delegate;
 @property (nullable, nonatomic, weak, readonly) UIViewController *contentViewController;
 @property (nonatomic, getter=isPullToRefreshEnabled) BOOL pullToRefreshEnabled;
+@property (nonatomic) BOOL alwaysWantsContentInset;
 
 - (void)embedContentViewController:(nonnull UIViewController *)contentViewController;
 

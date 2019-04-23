@@ -85,7 +85,9 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
 
     CGFloat safeAreaTopOffset = 0;
     if (@available(iOS 11.3, *)) {
-        safeAreaTopOffset =  [self.topLayoutGuide length];
+        if (!self.alwaysWantsContentInset) {
+            safeAreaTopOffset =  [self.topLayoutGuide length];
+        }
     }
 
     CGPoint contentOffset = _currentGestureScrollView.contentOffset;
@@ -132,7 +134,10 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
 
     if (forceApplyLayoutGuides || self.contentViewController.automaticallyAdjustsScrollViewInsets) {
         if (@available(iOS 11.3, *)) {
-
+            if (self.alwaysWantsContentInset) {
+                topLayoutGuideLength = [self.topLayoutGuide length];
+                bottomLayoutGuideLength = [self.bottomLayoutGuide length];
+            }
         } else {
             topLayoutGuideLength = [self.topLayoutGuide length];
             bottomLayoutGuideLength = [self.bottomLayoutGuide length];
@@ -204,7 +209,11 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
 
 - (void)scrollBack {
     [_currentPullToRefreshView layoutIfNeeded];
-    _bottomConstraint.constant = _lastTopLayoutValue;
+
+    UIScrollView *scrollView = _currentGestureScrollView;
+    CGFloat lastTopLayoutValue = _lastTopLayoutValue;
+    _bottomConstraint.constant = lastTopLayoutValue;
+
     [UIView animateWithDuration:APLPullToRefreshAnimationDuration animations:^{
         [self->_currentPullToRefreshView layoutIfNeeded];
         self->_currentPullToRefreshView.alpha = 0;
@@ -213,6 +222,9 @@ static const CGFloat APLPullToRefreshAnimationDuration = 0.2;
     } completion:^(BOOL finished) {
         [self removePullToRefreshView];
         self->_pullToRefreshInProgress = NO;
+        if (self->_alwaysWantsContentInset) {
+            scrollView.contentOffset = CGPointMake(0, -lastTopLayoutValue);
+        }
     }];
 }
 
